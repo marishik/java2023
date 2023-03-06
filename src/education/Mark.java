@@ -49,16 +49,14 @@ public class Mark {
      * Параметр на вход - итоговое количество баллов. Возвращает true/false как допуск или недопуск к экзамену
      */
     public static boolean haveOppToPassExam(int result){
-        if (result >= 3)
-            return true;
-        else return false;
+        return result >= 3;
     }
 
     /***
      * Параметры на вход: итоговое количество баллов студента, максимальное кол-во баллов за все задания. Возвращается оценка по пятибалльной шкале
      */
     public static int calcForwardEstimate(int result, int tasksCount){
-        int percent = (int)((result * 100) / tasksCount);
+        int percent = (result * 100) / tasksCount;
 
         if(percent >=40 && percent <60)
             return 3;

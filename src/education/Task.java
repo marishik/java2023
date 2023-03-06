@@ -50,9 +50,9 @@ public class Task {
      * На вход подается параметр - название задания. В зависимости от имени (easy, medium, hard) происходит начисление баллов: 1, 2 или 3 балла соответственно
      */
     public static int calcTaskScore(String name){
-        if (name == "easy")
+        if (name.equals("easy"))
             return 1;
-        else if (name == "medium")
+        else if (name.equals("medium"))
             return 2;
         else return 3;
     }

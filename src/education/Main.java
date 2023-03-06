@@ -1,3 +1,5 @@
+package education;
+
 import education.Student;
 import education.Task;
 import education.Mark;

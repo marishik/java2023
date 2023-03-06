@@ -19,9 +19,6 @@ public class Student {
         this.mark = mark;
     }
 
-    public Student(){
-
-    }
     public String getFirstName(){
         return firstName;
     }
@@ -50,8 +47,7 @@ public class Student {
     }
 
     public static String howManyPointsScored(int result){
-        String resultOfTasks = "Баллов из 6 : " + Integer.toString(result);
-        return resultOfTasks;
+        return "Баллов из 6 : " + Integer.toString(result);
     }
 
     public static String haveOppToPassExam(boolean opportunityToPassExam){
@@ -60,13 +56,11 @@ public class Student {
             exam = "Да";
         else exam = "Нет";
 
-        String resultOfOpportunityToPass = "Допуск к экзамену: " + exam;
-        return resultOfOpportunityToPass;
+        return "Допуск к экзамену: " + exam;
     }
 
     public static String whichForwardEstimate(int forwardEstimate){
-        String estimate = "Предварительная оценка (пятибалльная шкала) : " + Integer.toString(forwardEstimate);
-        return estimate;
+        return "Предварительная оценка (пятибалльная шкала) : " + Integer.toString(forwardEstimate);
     }
 
 }
