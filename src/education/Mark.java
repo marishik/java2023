@@ -7,34 +7,37 @@ package education;
  Предварительная оценка за дисциплину рассчитывается по проценту выполненной работы, где 6 в моем случае - максимум
 */
 public class Mark {
-    private int Result;
-    private Boolean OpportunityToPassExam = false;
-    private int ForwardEstimate;
+    private int result;
+    private Boolean opportunityToPassExam = false;
+    private int forwardEstimate;
 
     public Integer getResult() {
-        return Result;
+        return result;
     }
 
     public void setResult(Task[] tasks) {
-        this.Result = CalcResult(tasks);
+        this.result = calcResult(tasks);
     }
 
     public boolean getOpportunityToPassExam() {
-        this.OpportunityToPassExam = HaveOppToPassExam(Result);
-        return OpportunityToPassExam;
+        this.opportunityToPassExam = haveOppToPassExam(result);
+        return opportunityToPassExam;
     }
 
 
     public int getForwardEstimate() {
-        return ForwardEstimate;
+        return forwardEstimate;
     }
 
     public void setForwardEstimate(Task task) {
         int tasksCount = task.getTasksCount();
-        ForwardEstimate = CalcForwardEstimate(Result, tasksCount);
+        forwardEstimate = calcForwardEstimate(result, tasksCount);
     }
 
-    public static int CalcResult(Task[] tasks){
+    /***
+     * На вход принимается массив заданий (экземпляров класса Task). Считается и возвращается итоговое количество баллов за все задания
+     */
+    public static int calcResult(Task[] tasks){
         int valueCounter = 0;
         for(int i = 0; i<tasks.length; i++)
             valueCounter += tasks[i].getTaskScore();
@@ -42,13 +45,19 @@ public class Mark {
         return valueCounter;
     }
 
-    public static boolean HaveOppToPassExam(int result){
+    /***
+     * Параметр на вход - итоговое количество баллов. Возвращает true/false как допуск или недопуск к экзамену
+     */
+    public static boolean haveOppToPassExam(int result){
         if (result >= 3)
             return true;
         else return false;
     }
 
-    public static int CalcForwardEstimate(int result, int tasksCount){
+    /***
+     * Параметры на вход: итоговое количество баллов студента, максимальное кол-во баллов за все задания. Возвращается оценка по пятибалльной шкале
+     */
+    public static int calcForwardEstimate(int result, int tasksCount){
         int percent = (int)((result * 100) / tasksCount);
 
         if(percent >=40 && percent <60)

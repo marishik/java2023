@@ -8,7 +8,7 @@ class TaskTest {
     void EasyLevelCorrectCalcTaskScore(){
         String i = "easy";
         int expected = 1;
-        int actual = education.Task.CalcTaskScore(i);
+        int actual = education.Task.calcTaskScore(i);
         assertEquals(expected, actual);
     }
 
@@ -16,7 +16,7 @@ class TaskTest {
     void MediumLevelCorrectCalcTaskScore(){
         String i = "medium";
         int expected = 2;
-        int actual = education.Task.CalcTaskScore(i);
+        int actual = education.Task.calcTaskScore(i);
         assertEquals(expected, actual);
     }
 
@@ -24,7 +24,7 @@ class TaskTest {
     void HardLevelCorrectCalcTaskScore(){
         String i = "hard"; // hard or something else
         int expected = 3;
-        int actual = education.Task.CalcTaskScore(i);
+        int actual = education.Task.calcTaskScore(i);
         assertEquals(expected, actual);
     }
 }

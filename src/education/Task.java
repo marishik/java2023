@@ -1,7 +1,6 @@
 package education;
 
 import java.util.Random;
-import java.util.Scanner;
 
 /*
 Есть 3 задания с разной сложностью: легкое, среднее и сложное
@@ -10,42 +9,47 @@ import java.util.Scanner;
  */
 public class Task {
 
-    private int TasksCount = 6;
-    private String Difficulty;
-    private Integer TaskScore = 0; //есть метод который решает и сеттером устанавливается значение
-    private Boolean IsDone = DecideToDo(); //есть метод который решает
+    private int tasksCount = 6;
+    private String difficulty;
+    private Integer taskScore = 0; //есть метод который решает и сеттером устанавливается значение
+    private Boolean isDone = decideToDo(); //есть метод который решает
 
     public int getTasksCount() {
-        return TasksCount;
+        return tasksCount;
     }
 
     public String getDifficulty() {
-        return Difficulty;
+        return difficulty;
     }
 
     public void setDifficulty(String difficulty) {
-        this.Difficulty = difficulty;
+        this.difficulty = difficulty;
     }
 
     public Integer getTaskScore() {
-        return TaskScore;
+        return taskScore;
     }
 
     public void setTaskScore(String difficulty) {
-        this.TaskScore = CalcTaskScore(difficulty);
+        this.taskScore = calcTaskScore(difficulty);
     }
 
     public boolean getIsDone() {
-        return IsDone;
+        return isDone;
     }
 
-
-    public static boolean DecideToDo(){
+    /***
+     * Метод рандомно выбирает, будет ли решено задание. Возвращает true/false
+     */
+    public static boolean decideToDo(){
         Random i = new Random();
         return i.nextBoolean();
     }
 
-    public static int CalcTaskScore(String name){
+    /***
+     * На вход подается параметр - название задания. В зависимости от имени (easy, medium, hard) происходит начисление баллов: 1, 2 или 3 балла соответственно
+     */
+    public static int calcTaskScore(String name){
         if (name == "easy")
             return 1;
         else if (name == "medium")

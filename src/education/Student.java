@@ -1,7 +1,5 @@
 package education;
 
-import java.util.List;
-
 /*
 задание выполняется студентом (решает, будет оно выполнено или нет, метод DecideToDo в классе Task.
 у студента есть имя и фамилия, а также результаты по выполненной им работе.
@@ -9,8 +7,8 @@ import java.util.List;
 какая у него предварительная оценка
  */
 public class Student {
-    String FirstName;
-    String LastName;
+    String firstName;
+    String lastName;
     Mark mark;
 
     public Mark getMark() {
@@ -25,38 +23,38 @@ public class Student {
 
     }
     public String getFirstName(){
-        return FirstName;
+        return firstName;
     }
 
     public String getLastName(){
-        return LastName;
+        return lastName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
-    public void ShowTheResult(){
+    public void showTheResult(){
         int result = mark.getResult();
         boolean opportunityToPassExam = mark.getOpportunityToPassExam();
         int forwardEstimate = mark.getForwardEstimate();
 
-        System.out.println(FirstName + " " + LastName);
-        System.out.println(HowManyPointsScored(result));
-        System.out.println(HaveOppToPassExam(opportunityToPassExam));
-        System.out.println(WhichForwardEstimate(forwardEstimate));
+        System.out.println(firstName + " " + lastName);
+        System.out.println(howManyPointsScored(result));
+        System.out.println(haveOppToPassExam(opportunityToPassExam));
+        System.out.println(whichForwardEstimate(forwardEstimate));
     }
 
-    public static String HowManyPointsScored(int result){
+    public static String howManyPointsScored(int result){
         String resultOfTasks = "Баллов из 6 : " + Integer.toString(result);
         return resultOfTasks;
     }
 
-    public static String HaveOppToPassExam(boolean opportunityToPassExam){
+    public static String haveOppToPassExam(boolean opportunityToPassExam){
         String exam = "";
         if(opportunityToPassExam)
             exam = "Да";
@@ -66,7 +64,7 @@ public class Student {
         return resultOfOpportunityToPass;
     }
 
-    public static String WhichForwardEstimate (int forwardEstimate){
+    public static String whichForwardEstimate(int forwardEstimate){
         String estimate = "Предварительная оценка (пятибалльная шкала) : " + Integer.toString(forwardEstimate);
         return estimate;
     }

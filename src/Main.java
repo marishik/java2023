@@ -34,6 +34,6 @@ public class Main {
         marinaMark.setForwardEstimate(easy);
         me.setMark(marinaMark);
 
-        me.ShowTheResult();
+        me.showTheResult();
     }
 }
