@@ -8,8 +8,14 @@ package education;
 */
 public class Mark {
     private int result;
-    private Boolean opportunityToPassExam = false;
+    private Boolean opportunityToPassExam;
     private int forwardEstimate;
+
+    public Mark() {
+        this.result = result;
+        this.opportunityToPassExam = false;
+        this.forwardEstimate = forwardEstimate;
+    }
 
     public Integer getResult() {
         return result;
@@ -24,7 +30,6 @@ public class Mark {
         return opportunityToPassExam;
     }
 
-
     public int getForwardEstimate() {
         return forwardEstimate;
     }
@@ -37,9 +42,9 @@ public class Mark {
     /***
      * На вход принимается массив заданий (экземпляров класса Task). Считается и возвращается итоговое количество баллов за все задания
      */
-    public static int calcResult(Task[] tasks){
+    public static int calcResult(Task[] tasks) {
         int valueCounter = 0;
-        for(int i = 0; i<tasks.length; i++)
+        for (int i = 0; i < tasks.length; i++)
             valueCounter += tasks[i].getTaskScore();
 
         return valueCounter;
@@ -48,21 +53,21 @@ public class Mark {
     /***
      * Параметр на вход - итоговое количество баллов. Возвращает true/false как допуск или недопуск к экзамену
      */
-    public static boolean haveOppToPassExam(int result){
+    public static boolean haveOppToPassExam(int result) {
         return result >= 3;
     }
 
     /***
      * Параметры на вход: итоговое количество баллов студента, максимальное кол-во баллов за все задания. Возвращается оценка по пятибалльной шкале
      */
-    public static int calcForwardEstimate(int result, int tasksCount){
+    public static int calcForwardEstimate(int result, int tasksCount) {
         int percent = (result * 100) / tasksCount;
 
-        if(percent >=40 && percent <60)
+        if (percent >= 40 && percent < 60)
             return 3;
-        else if (percent >=60 && percent <80)
+        else if (percent >= 60 && percent < 80)
             return 4;
-        else if (percent >=80)
+        else if (percent >= 80)
             return 5;
         else return 2;
     }

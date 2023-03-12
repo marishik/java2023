@@ -1,27 +1,36 @@
 package education;
 
-import education.Student;
-import education.Task;
-import education.Mark;
-import javax.swing.*;
-
 public class Main {
     public static void main(String[] args) {
         //Program.sayHello();
-       //Program.sinusTable();
+        //Program.sinusTable();
 
-        Student me = new Student();
+        Student me = Student.builder()
+                .firstname("Марина")
+                .lastName("Алексеева")
+                .mark(new Mark())
+                .build();
         Mark marinaMark = new Mark();
 
-        me.setFirstName("Марина");
-        me.setLastName("Алексеева");
         me.setMark(marinaMark);
 
-        Task easy = new Task();
-        Task medium = new Task();
-        Task hard = new Task();
-        Task[] tasks = {easy, medium, hard};
+        Task easy = Task.builder()
+                .tasksCount()
+                .taskScore()
+                .isDone()
+                .build();
+        Task medium = Task.builder()
+                .tasksCount()
+                .taskScore()
+                .isDone()
+                .build();
+        Task hard = Task.builder()
+                .tasksCount()
+                .taskScore()
+                .isDone()
+                .build();
 
+        Task[] tasks = {easy, medium, hard};
 
         for (int i = 0; i < tasks.length; i++) {
             boolean decision = tasks[i].getIsDone();

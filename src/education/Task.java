@@ -8,22 +8,20 @@ import java.util.Random;
 Чтобы получить оценку за задание, его необходимо выполнить (вау)
  */
 public class Task {
+    private int tasksCount;
+    private Integer taskScore;
+    private Boolean isDone;
 
-    private int tasksCount = 6;
-    private String difficulty;
-    private Integer taskScore = 0; //есть метод который решает и сеттером устанавливается значение
-    private Boolean isDone = decideToDo(); //есть метод который решает
+    /*
+    public Task(){
+        this.tasksCount = 6;
+        this.taskScore = 0;
+        this.isDone = decideToDo();
+    }
+    */
 
     public int getTasksCount() {
         return tasksCount;
-    }
-
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
     }
 
     public Integer getTaskScore() {
@@ -38,23 +36,63 @@ public class Task {
         return isDone;
     }
 
+    private Task() {
+        this.tasksCount = 6;
+        this.taskScore = 0;
+        this.isDone = decideToDo();
+    }
+
+    public static class Builder {
+        private int tasksCount;
+        private Integer taskScore;
+        private Boolean isDone;
+
+        private Builder() {
+        }
+
+        public Task.Builder tasksCount() {
+            this.tasksCount = tasksCount;
+
+            return this;
+        }
+
+        public Task.Builder taskScore() {
+            this.taskScore = taskScore;
+
+            return this;
+        }
+
+        public Task.Builder isDone() {
+            this.isDone = isDone;
+            return this;
+
+        }
+
+        public Task build() {
+            return new Task();
+        }
+    }
+
+    public static Task.Builder builder() {
+        return new Task.Builder();
+    }
+
     /***
      * Метод рандомно выбирает, будет ли решено задание. Возвращает true/false
      */
-    public static boolean decideToDo(){
+    public static boolean decideToDo() {
         Random i = new Random();
         return i.nextBoolean();
     }
 
     /***
-     * На вход подается параметр - название задания. В зависимости от имени (easy, medium, hard) происходит начисление баллов: 1, 2 или 3 балла соответственно
+     * На вход подается параметр - уровень сложности задания. В зависимости от имени (easy, medium, hard) происходит начисление баллов: 1, 2 или 3 балла соответственно
      */
-    public static int calcTaskScore(String name){
+    public static int calcTaskScore(String name) {
         if (name.equals("easy"))
             return 1;
         else if (name.equals("medium"))
             return 2;
         else return 3;
     }
-
 }

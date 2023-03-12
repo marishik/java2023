@@ -59,9 +59,21 @@ class MarkTest {
 
     @Test
     void CountPointsIsCorrect() {
-        Task easy = new Task();
-        Task medium = new Task();
-        Task hard = new Task();
+        Task easy = Task.builder()
+                .tasksCount()
+                .taskScore()
+                .isDone()
+                .build();
+        Task medium = Task.builder()
+                .tasksCount()
+                .taskScore()
+                .isDone()
+                .build();
+        Task hard = Task.builder()
+                .tasksCount()
+                .taskScore()
+                .isDone()
+                .build();
         Task[] testTasks = {easy, medium, hard};
         hard.setTaskScore("hard");
         int expected = 3;
