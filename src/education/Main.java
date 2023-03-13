@@ -6,7 +6,7 @@ public class Main {
         //Program.sinusTable();
 
         Student me = Student.builder()
-                .firstname("Марина")
+                .firstName("Марина")
                 .lastName("Алексеева")
                 .mark(new Mark())
                 .build();

@@ -12,14 +12,6 @@ public class Task {
     private Integer taskScore;
     private Boolean isDone;
 
-    /*
-    public Task(){
-        this.tasksCount = 6;
-        this.taskScore = 0;
-        this.isDone = decideToDo();
-    }
-    */
-
     public int getTasksCount() {
         return tasksCount;
     }

@@ -1,4 +1,7 @@
 package education;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 /*
 задание выполняется студентом (решает, будет оно выполнено или нет, метод DecideToDo в классе Task)
@@ -7,80 +10,21 @@ package education;
 какая у него предварительная оценка
  */
 public class Student {
-    String firstName;
-    String lastName;
-    Mark mark;
+    @Getter
+    @Setter
+    private String firstName;
+    @Getter
+    @Setter
+    private String lastName;
+    @Getter
+    @Setter
+    private Mark mark;
 
-    /* Это был конструктор до того, как сделала builder
-    public Student(String firstName, String lastName ){
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-    */
-
-    public Mark getMark() {
-        return mark;
-    }
-
-    public void setMark(Mark mark) {
-        this.mark = mark;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
+    @Builder
     private Student(String firstName, String lastName, Mark mark) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mark = mark;
-    }
-
-    public static class Builder {
-        private String firstName;
-        private String lastName;
-        private Mark mark;
-
-        private Builder() {
-        }
-
-        public Builder firstname(String firstName) {
-            this.firstName = firstName;
-
-            return this;
-        }
-
-        public Builder lastName(String lastName) {
-            this.lastName = lastName;
-
-            return this;
-        }
-
-        public Builder mark(Mark mark) {
-            this.mark = mark;
-            return this;
-
-        }
-
-        public Student build() {
-            return new Student(firstName, lastName, mark);
-        }
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public void showTheResult() {
