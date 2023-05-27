@@ -6,6 +6,7 @@ public class Game2048 extends Game{
     private static final int SIDE = 4;
     private int[][] gameField = new int[SIDE][SIDE];
     private boolean isGameStopped = false;
+    private Integer pointForWin = 2048;
 
     public void initialize() {
         setScreenSize(SIDE, SIDE);
@@ -14,6 +15,7 @@ public class Game2048 extends Game{
     }
 
     private void createGame(){
+        gameField = new int[SIDE][SIDE];
         createNewNumber();
         createNewNumber();
     }
@@ -28,12 +30,10 @@ public class Game2048 extends Game{
     }
 
     /***
-     * Генерирует с вероятностью 90% значение "2" и с вероятностью 10% значение "4" для первых значений в рандомную ячейку с координатами x и y.
+     * Если игрок не победил, то метод генерирует с вероятностью 90% значение "2" и с вероятностью 10% значение "4" в рандомную пустую ячейку с координатами x и y.
      */
     private void createNewNumber(){
-        if(getMaxTileValue() == 2048){
-            win();
-        }
+        checkIfWin();
         int x = getRandomNumber(SIDE);
         int y = getRandomNumber(SIDE);
         int chance = getRandomNumber(10);
@@ -54,6 +54,12 @@ public class Game2048 extends Game{
                     y = getRandomNumber(SIDE);
                 }
             }
+        }
+    }
+
+    private void checkIfWin(){
+        if(getMaxTileValue() == pointForWin){
+            win();
         }
     }
 
@@ -110,6 +116,20 @@ public class Game2048 extends Game{
 
     @Override
     public void onKeyPress(Key key) {
+        if(isGameStopped){
+            if (key == Key.SPACE) {
+                isGameStopped = false;
+                createGame();
+                drawScene();
+            }
+            else return;
+        }
+
+        if(!canUserMove()){
+            gameOver();
+            return;
+        }
+
         if (key == Key.LEFT) {
             moveLeft();
         }
@@ -174,10 +194,9 @@ public class Game2048 extends Game{
     /***
      * Метод "перебрасывает" все ненулевые элементы влево, а нули вправо
      * @param row
-     * @return flag - сделана ли перестановка влево
      */
     public static boolean compressRow(int[] row){
-        boolean flag = false;
+        boolean compressed = false;
         for(int i = 0; i < row.length; i++){
             for (int j = 0; j < row.length - i - 1; j++) {
                 if (row[j] == 0 && row[j + 1] == 0)
@@ -185,12 +204,12 @@ public class Game2048 extends Game{
                 if (row[j] == 0) {
                     row[j] = row[j + 1];
                     row[j + 1] = 0;
-                    flag = true;
+                    compressed = true;
                 }
             }
         }
 
-        return flag;
+        return compressed;
     }
 
     /***
@@ -232,8 +251,8 @@ public class Game2048 extends Game{
     public int getMaxTileValue(){
         int result = 0;
 
-        for (int[] i : gameField) {
-            for (int j : i)
+        for (int[] row : gameField) {
+            for (int j : row)
                 result = Math.max(result, j);
         }
 
@@ -245,10 +264,35 @@ public class Game2048 extends Game{
         showMessageDialog(Color.SILVER, "You win!", Color.TOMATO, 12);
     }
 
+    private void gameOver(){
+        isGameStopped = true;
+        showMessageDialog(Color.SILVER, "Game over", Color.TOMATO, 12);
+    }
+
     private void rotateXtimes(int howManyTimes){
         while(howManyTimes > 0) {
             rotateClockwise();
             howManyTimes--;
         }
+    }
+
+    //Ход можно сделать, если есть хотя бы одна пустая плитка или пустых плиток нет, но есть возможность их соединения.
+    /***
+     * Возвращает false, если пустых плиток нет, и нет возможности соединения клеток (соседних с одинаковым значением).
+     * @return
+     */
+    private boolean canUserMove() {
+        for (int y = 0; y < SIDE ; y++) {
+            for (int x = 0; x < SIDE; x++) {
+                if (gameField[y][x] == 0) {
+                    return true;
+                } else if (y < SIDE - 1 && gameField[y][x] == gameField[y + 1][x]) {
+                    return true;
+                } else if ((x < SIDE - 1) && gameField[y][x] == gameField[y][x + 1]) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
