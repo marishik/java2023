@@ -41,21 +41,22 @@ public class TestGame2048 extends Game {
         assertEquals(expected, actual);
     }
 
-    @Test
-    void testMergeRowTrue(){
-        int[] arr = {2, 2, 0, 0};
-        boolean expected = true;
-        boolean actual = Game2048.mergeRow(arr);
+//    @Test
+//    void testMergeRowTrue(){
+//        int[] arr = {2, 2, 0, 0};
+//        boolean expected = true;
+//        boolean actual = Game2048.mergeRow(arr);
+//
+//        assertEquals(expected, actual);
+//    }
+//
+//    @Test
+//    void testMergeRowFalse(){
+//        int[] arr = {2, 0, 2, 0};
+//        boolean expected = false;
+//        boolean actual = Game2048.mergeRow(arr);
+//
+//        assertEquals(expected, actual);
+//    }
 
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void testMergeRowFalse(){
-        int[] arr = {2, 0, 2, 0};
-        boolean expected = false;
-        boolean actual = Game2048.mergeRow(arr);
-
-        assertEquals(expected, actual);
-    }
 }

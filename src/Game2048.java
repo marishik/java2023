@@ -4,9 +4,10 @@ import java.util.HashMap;
 
 public class Game2048 extends Game{
     private static final int SIDE = 4;
-    private int[][] gameField = new int[SIDE][SIDE];
+    private static int[][] gameField = new int[SIDE][SIDE];
     private boolean isGameStopped = false;
-    private Integer pointForWin = 2048;
+    private Integer pointForWin = 32;
+    private static int score = 0;
 
     public void initialize() {
         setScreenSize(SIDE, SIDE);
@@ -21,7 +22,6 @@ public class Game2048 extends Game{
     }
 
     private void drawScene(){
-
         for (int i = 0; i < SIDE; i++){
             for(int j = 0; j< SIDE; j++){
                 setCellColoredNumber(i, j, gameField[j][i]);
@@ -116,13 +116,16 @@ public class Game2048 extends Game{
 
     @Override
     public void onKeyPress(Key key) {
-        if(isGameStopped){
+        if (isGameStopped) {
             if (key == Key.SPACE) {
                 isGameStopped = false;
+                score = 0;
+                setScore(score);
                 createGame();
                 drawScene();
+            } else {
+                return;
             }
-            else return;
         }
 
         if(!canUserMove()){
@@ -216,13 +219,15 @@ public class Game2048 extends Game{
      * Проверяет, были ли рядом в строке одинаковые значения, которые следует соединить
      * @return
      */
-    public static boolean mergeRow(int[] row) {
+    public boolean mergeRow(int[] row) {
         boolean flag = false;
         for (int i = 0; i < row.length - 1; i++) {
             if (row[i] == row[i + 1] && row[i] != 0) {
                 row[i] = row[i] * 2;
                 row[i + 1] = 0;
                 flag = true;
+                score = getMaxTileValue();
+                setScore(score);
             }
         }
 
@@ -248,7 +253,7 @@ public class Game2048 extends Game{
     /***
      * Считает максимальное значение, которое сейчас есть в матрице. Проверка на победу :)
      */
-    public int getMaxTileValue(){
+    public static int getMaxTileValue(){
         int result = 0;
 
         for (int[] row : gameField) {
